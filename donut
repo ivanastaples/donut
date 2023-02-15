@@ -1,10 +1,10 @@
 import turtle as trtl
 wn = trtl.Screen()
-# prints the owner’s dialogue in the terminal
+
+# wn.setup(900, 1100, 0, 0)
 print("hi! welcome in to Zyack's Donuts! please be specific when you tell me what you want. i'm hard of hearing.")
 
-
-# creates the shadow beneath the plate
+# TODO: make plate more detailed
 shadow = trtl.Turtle()
 shadow.speed(0)
 shadow.pencolor("#5F6565")
@@ -18,8 +18,6 @@ shadow.end_fill()
 shadow.penup()
 shadow.ht()
 
-
-#creates the plate
 plate = trtl.Turtle()
 plate.speed(0)
 plate.pencolor("#c1cdcd")
@@ -33,22 +31,18 @@ plate.end_fill()
 plate.penup()
 plate.ht()
 
-
-# creates the bread part of the donut
 bread = trtl.Turtle()
 bread.speed(0)
-#asks for the user’s input for what color the bread should be
 bread_color = input("do you want a cake or whole wheat donut?")
 if (bread_color == "cake"):
-   bread.pencolor("#F2AC45")
-   bread.fillcolor("#F2AC45")
+    bread.pencolor("#F2AC45")
+    bread.fillcolor("#F2AC45")
 elif (bread_color == "whole wheat"):
-   bread.pencolor("#9A702B") # TODO: change color
-   bread.fillcolor("#9A702B")
-# this statement closes the if statement. This assures that there is no infinite loop. If the user attempts to ask for a different flavor, the owner will get mad and kick them out of the store. This ends the program
+    bread.pencolor("#9A702B")
+    bread.fillcolor("#9A702B")
 else:
-   print("you think you can be smart with me? get lost chump. we sell cake or whole wheat. come back later after you've cooled down.")
-   exit()
+    print("you think you can be smart with me? get lost chump. we sell cake or whole wheat. come back later after you've cooled down.")
+    exit()
 print("i like that one!")
 shadow.begin_fill()
 shadow.goto(0, -40)
@@ -65,51 +59,46 @@ bread.circle(200)
 bread.end_fill()
 bread.ht()
 
-
-# similar to the bread, the user defines which color the icing should be. Instead of ending the program with an exit(), the owners will just give the user pink if they pick a different color
 icing = trtl.Turtle()
 icing.speed(0)
 icing_color = input("do you want chocolate, vanilla, or pink icing?")
 if icing_color == "pink":
-   icing.pencolor("#EE82EE")
-   icing.fillcolor("#EE82EE")
-   print("pink it is!")
+    icing.pencolor("#EE82EE")
+    icing.fillcolor("#EE82EE")
+    print("pink it is!")
 elif icing_color == "chocolate":
-   icing.pencolor("#4C2100") # TODO: change color
-   icing.fillcolor("#4C2100")
-   print("chocolate it is!")
+    icing.pencolor("#4C2100")
+    icing.fillcolor("#4C2100")
+    print("chocolate it is!")
 elif icing_color == "vanilla":
-   icing.pencolor("#F7EDE6") # TODO: change color
-   icing.fillcolor("#F7EDE6")
-   print("vanilla it it!")
+    icing.pencolor("#F7EDE6")
+    icing.fillcolor("#F7EDE6")
+    print("vanilla it it!")
 else:
-   print("that isn't an option. you're gonna get pink, buster.")
-   icing.pencolor("#EE82EE")
-   icing.fillcolor("#EE82EE")
+    print("that isn't an option. you're gonna get pink, buster.")
+    icing.pencolor("#EE82EE")
+    icing.fillcolor("#EE82EE")
 print("icing...")
 icing.penup()
 icing.begin_fill()
-icing.goto(0,15)
+icing.goto(0, 15)
 icing.circle(162)
 icing.end_fill()
 icing.penup()
-# bumps are given to the icing to make it look more realistic. The radius of the bumps are chosen from a list, and then the circles are stamped along the edge of the donut
 icing_bump_size = [14, 16, 14, 18, 24, 30, 14, 14]
 for bump in range(30):
-   icing.begin_fill()
-   icing.goto(0, 180)
-   icing.pendown()
-   icing.right(380)
-   icing.forward(158)
-   icing.circle(icing_bump_size.pop())
-   icing.end_fill()
-   if (len(icing_bump_size) == 0):
-       icing_bump_size = [12, 16, 18, 24, 30]
-   if bump == 30:
-       print("icing's done.")
+    icing.begin_fill()
+    icing.goto(0, 180)
+    icing.pendown()
+    icing.right(380)
+    icing.forward(158)
+    icing.circle(icing_bump_size.pop())
+    icing.end_fill()
+    if (len(icing_bump_size) == 0):
+        icing_bump_size = [12, 16, 18, 24, 30]
+    if bump == 30:
+        print("icing's done.")
 
-
-# creates the donut hole
 bread.penup()
 bread.goto(0, 125)
 bread.pendown()
@@ -118,8 +107,6 @@ bread.circle(60)
 bread.end_fill()
 bread.ht()
 
-
-# creates the donut whole
 shadow.st()
 shadow.begin_fill()
 shadow.goto(0, 130)
@@ -127,68 +114,66 @@ shadow.circle(50)
 shadow.end_fill()
 shadow.ht()
 
-
-# the sprinkles are then added to the donut. The colors are chosen from a list. When the list is empty, it will reset. The sprinkles are created in a spiral around the donut and alternate in orientation. The pattern does no appear to be very random, but it gets the job done. 
 sprinkle = trtl.Turtle()
 sprinkle.speed(0)
 sprinkle_yes = input("do you want sprinkles?")
 if sprinkle_yes == "yes":
-   sprinkle_colororchocolate = input("chocolate or rainbow?")
+    sprinkle_colororchocolate = input("chocolate or rainbow?")
 elif sprinkle_yes == "no":
-   print("enjoy the donut and thanks for coming in!")
-# if the user does not want sprinkles, the program ends and keeps the screen active instead of exiting 
-   wn = trtl.Screen()
-   wn.mainloop()
+    sprinkle.ht()
+    print("enjoy the donut and thanks for coming in!")
+    wn = trtl.Screen()
+    wn.mainloop()
 else:
-   print("huh!? i can't hear ya! here have some sprinkles")
-   sprinkle_colororchocolate = "rainbow"
+    print("huh!? i can't hear ya! here have some sprinkles")
+    sprinkle_colororchocolate = "rainbow"
 if sprinkle_colororchocolate == "rainbow":
-   sprinkle_color = ["red", "yellow", "#EE82EE", "blue", "green", "purple", "white"]
-   print("rainbow sprinkles it it!")
+    sprinkle_color = ["red", "yellow", "#EE82EE",
+                      "blue", "green", "purple", "white"]
+    print("rainbow sprinkles it it!")
 elif sprinkle_colororchocolate == "chocolate":
-   sprinkle_color = ["#210E00"]
-   print("chocolate sprinkles it is!")
+    sprinkle_color = ["#210E00"]
+    print("chocolate sprinkles it is!")
 else:
-   print("huh!? i can't hear ya! here have some sprinkles")
-   sprinkle_color = ["red", "yellow", "#EE82EE", "blue", "green", "purple", "white"]
+    print("huh!? i can't hear ya! here have some sprinkles")
+    sprinkle_color = ["red", "yellow", "#EE82EE",
+                      "blue", "green", "purple", "white"]
 direction = 90
 print("sprinkling...")
-for color in range(34):
-   new_color = sprinkle_color.pop()
-   sprinkle.pencolor(new_color)
-   sprinkle.fillcolor(new_color)
-   sprinkle.penup()
-   sprinkle.goto(0, 190)
-   sprinklex = 0
-   sprinkley = 75
-   sprinkle.right(sprinklex + color*2.5) # TODO: make sprinkles appear to be more random.
-   sprinkle.forward(sprinkley + color*2.5)
-   sprinklex = sprinkle.xcor()
-   sprinkley = sprinkle.ycor()
-   sprinkle.setheading(direction)
-   sprinkle.pendown()
-   sprinkle.begin_fill()
-   sprinkle.circle(4) # TODO: change sprinkle shape
-   sprinkle.end_fill()
-   #for circle in range(6):
-       #sprinkle.begin_fill()
-       #sprinkle.circle(4)
-       #sprinkle.goto(sprinklex, sprinkley - 3) # TODO: make sprinkles go in direction using set heading and forward instead of goto
-       #sprinkle.end_fill()
-   direction += 35
-   if sprinkle_colororchocolate == "rainbow":
-       if (len(sprinkle_color) == 0):
-           sprinkle_color = ["red", "yellow", "#EE82EE", "blue", "green", "purple", "white"]
-   elif sprinkle_colororchocolate == "chocolate":
-       if (len(sprinkle_color) == 0):
-           sprinkle_color = ["#210E00"]
+for color in range(60):
+    new_color = sprinkle_color.pop()
+    sprinkle.pencolor(new_color)
+    sprinkle.fillcolor(new_color)
+    sprinkle.penup()
+    sprinkle.goto(0, 190)
+    sprinklex = 0
+    sprinkley = 75
+    # TODO: make sprinkles appear to be more random.
+    sprinkle.right(sprinklex + color*1.5)
+    sprinkle.forward(sprinkley + color*1.5)
+    sprinklex = sprinkle.xcor()
+    sprinkley = sprinkle.ycor()
+    sprinkle.setheading(direction)
+    sprinkle.pendown()
+    sprinkle.begin_fill()
+    sprinkle.right(90)
+    for circle in range(2):
+        sprinkle.forward(4)
+        sprinkle.left(90)
+        sprinkle.forward(8)
+        sprinkle.left(90)
+    sprinkle.end_fill()
+    direction += 65
+    if sprinkle_colororchocolate == "rainbow":
+        if (len(sprinkle_color) == 0):
+            sprinkle_color = ["red", "yellow", "#EE82EE",
+                              "blue", "green", "purple", "white"]
+    elif sprinkle_colororchocolate == "chocolate":
+        if (len(sprinkle_color) == 0):
+            sprinkle_color = ["#210E00"]
 sprinkle.ht()
-
 
 print("bon appetit!")
 
-
-# keeps the screen active instead of exiting 
 wn = trtl.Screen()
 wn.mainloop()
-exit()
